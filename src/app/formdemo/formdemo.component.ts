@@ -9,27 +9,25 @@ import {NgForm} from '@angular/forms'
 export class FormdemoComponent implements OnInit {
 
 
-  hobbies = ['Cricket', 'Singing',
-            'Writing', 'Reading'];
+  cities = ['jamnagar', 'Rajkot',
+            'surat', 'porbander'];
          userRegistration=new Registration(
-           1,'nirali','shah','','',this.hobbies[0]);
+           1,'nirali','shah','','',this.cities[0]);
 
 
 
   constructor() { }
-
+  
   ngOnInit() {
-
+    
   }
   submitted = false;
 hidden=false;
-pass:string;
-confirmPass:string;
-final:string;
   onSubmit(fm:NgForm) {
      this.submitted = true;
      //debugger;
   console.log(fm);
+  
  }
  onHidden()
  {
@@ -38,27 +36,4 @@ final:string;
    
  }
 
- checkpassword(cp:NgForm)
- {
-   this.final="";
-   console.log("check");
-  
-  
-this.pass=cp.control.value.password;
-this.confirmPass=cp.control.value.confirmPassword;
-console.log( "password"+this.pass);
-console.log("confirm paass" + this.confirmPass);
-    if((this.pass!==this.confirmPass))
-    {
-      console.log("pls same password ");
-    
-
-      this.final="password must be same";
-     
-    }
-   
-    
- }
- 
- 
 }

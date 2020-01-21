@@ -1,105 +1,96 @@
 <h1>SignUp form</h1>
 <div class="container" [hidden]="hidden">
-    <form #user="ngForm" (ngSubmit)="onSubmit(user);" >
-        <div class="form-group">
-            <label for="firstname">FirstName</label>
-            <input type="text" class="form-control" id="firstname" #firstname="ngModel"name="firstname"   [(ngModel)]="userRegistration.firstname" required>
-          </div>
-          
-           <div *ngIf="!firstname.valid && (firstname.touch || firstname.dirty)">
-            <div *ngIf="firstname.errors.required" class="alert alert-danger">
-              Firstname is required
-            </div>
-          </div> 
-          <!-- <div *ngIf="firstname.touched">
-           
-              Firstname is required touch
-          </div>
-        
-        <div *ngIf="firstname.valid">
-            
-              Firstname is required  valid
-         </div>
-
-         <div *ngIf="firstname.dirty">
-            
-            Firstname is required  dirty
-       </div>
-
-
-       <div *ngIf="firstname.untouched">
-           
-        Firstname is required untouch
+  <form #user="ngForm" (ngSubmit)="onSubmit(user)">
+    <div class="form-group">
+      <label for="firstname">FirstName</label>
+      <input type="text" class="form-control" id="firstname" #firstname="ngModel" name="firstname"
+        [(ngModel)]="userRegistration.firstname" required />
     </div>
-   -->
-   <br>
-   <!--lastname-->
-          <div class="form-group">
-            <label for="lastname">LastName</label>
-            <input type="text" class="form-control" id="lastname" #lastname="ngModel"  [(ngModel)]="userRegistration.lastname" name="lastname" required>
-          </div>
-            <br>
-          <div *ngIf="!lastname.valid && (lastname.touch || lastname.dirty)">
-              <div *ngIf="lastname.errors.required" class="alert alert-danger">
-                lastname is required
-              </div>
-          </div>
-          
-<!--password-->
-       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" 
-        minlength="8" #password="ngModel"  [(ngModel)]="userRegistration.password" name="password" required>
+
+    <div *ngIf="!firstname.valid && (firstname.touch || firstname.dirty)">
+      <div *ngIf="firstname.errors.required" class="alert alert-danger">
+        Firstname is required
       </div>
-     <div *ngIf="password.invalid && (password.touched || password.dirty)">
-        <div *ngIf="password.errors.required" class="alert alert-danger">
-          password is required
-        </div>
-     
-        <div *ngIf="password.errors.minlength" >
-        Name must be at least 8 characters long.
-        </div>
-
-        
-     </div>
-  
-
-     <!--Confirm password-->
-     <div class="form-group">
-      <label for="confirmPassword"> Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" 
-      minlength="8" #confirmPassword="ngModel"  
-      [(ngModel)]="userRegistration.confirmPassword" 
-      (input)="checkpassword(user);" name="confirmPassword" required>
     </div>
-   <div *ngIf="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)">
+
+    <br />
+    <!--lastname-->
+    <div class="form-group">
+      <label for="lastname">LastName</label>
+      <input type="text" class="form-control" id="lastname" #lastname="ngModel" [(ngModel)]="userRegistration.lastname"
+        name="lastname" required />
+    </div>
+    <br />
+    <div *ngIf="!lastname.valid && (lastname.touch || lastname.dirty)">
+      <div *ngIf="lastname.errors.required" class="alert alert-danger">
+        lastname is required
+      </div>
+    </div>
+
+    <!--password-->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" minlength="8" #password="ngModel"
+        [(ngModel)]="userRegistration.password" name="password" required />
+    </div>
+    <div *ngIf="password.invalid && (password.touched || password.dirty)">
+      <div *ngIf="password.errors.required" class="alert alert-danger">
+        password is required
+      </div>
+
+      <div *ngIf="password.errors.minlength">
+        Name must be at least 8 characters long.
+      </div>
+    </div>
+
+    <!--Confirm password-->
+    <div class="form-group">
+      <label for="confirmPassword"> Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" minlength="8" #confirmPassword="ngModel"
+        [(ngModel)]="userRegistration.confirmPassword" name="confirmPassword" required />
+    </div>
+    <div *ngIf="
+        confirmPassword.invalid &&
+        (confirmPassword.touched || confirmPassword.dirty)
+      ">
       <div *ngIf="confirmPassword.errors.required" class="alert alert-danger">
         confirm password is required
       </div>
-   
-      <div *ngIf="confirmPassword.errors.minlength" >
-      Name must be at least 8 characters long.
-      </div>    
-       
-   </div>
-<div *ngIf="final" class="alert alert-danger">
-  {{final}}
-  </div>
-        
-   <!--hobbies-->
-   <label for="Hobbies">Hobbies</label>
-        <select class="form-control" id="hobbies"
-                [(ngModel)]="userRegistration.hobbies" name="hobbies"
-                #hobbie="ngModel">
-          <option *ngFor="let hobbie of hobbies" [value]="hobbie">{{hobbie}}</option>
-        </select>
 
-       
-            <br>
-          <button [disabled]="!user.form.valid" type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;
-          <button [disabled]="!user.form.valid" type="reset" class="btn btn-success">Reset</button>&nbsp;&nbsp;
-          <button [hidden]="hidden"  [disabled]="!user.form.valid" (click) ="onHidden(user);" class="btn btn-success">hidden Form</button>
+      <div *ngIf="confirmPassword.errors.minlength">
+        Name must be at least 8 characters long.
+      </div>
+    </div>
 
-</form>    
+    <ng-container *ngIf="confirmPassword.valid">
+      <div [hidden]="password.value == confirmPassword.value">
+        <p>password must be same</p>
+      </div>
+    </ng-container>
+    <!--City-->
+    <label for="cities">City</label>
+    <select class="form-control" id="cities" [(ngModel)]="userRegistration.cities" name="cities" #city="ngModel">
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
 
+    <br />
+
+    <!--Date-->
+
+    <label for="dateOfBirth">dateOfBirth</label>
+    <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" [(ngModel)]=dob />
+
+    <br>
+    <!---Button-->
+    <button [disabled]="!user.form.valid" type="submit" class="btn btn-success">
+      Submit</button>&nbsp;&nbsp;
+    <button [disabled]="!user.form.valid" type="reset" class="btn btn-success">
+      Reset</button>&nbsp;&nbsp;
+    <button [hidden]="hidden" [disabled]="!user.form.valid" (click)="onHidden(user)" class="btn btn-success">
+      hidden Form
+    </button>
+
+
+
+  </form>
 </div>

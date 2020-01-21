@@ -6,17 +6,17 @@ export  class Registration
     public lastname:string;
     public password:string;
     public confirmPassword:string;
-    public hobbies:string[];
+    public cities:string[];
    
     
-    constructor(id,firstname,lastname,password,confirmPassword,hobbies)
+    constructor(id,firstname,lastname,password,confirmPassword,cities)
     { 
         this.id=id;
         this.firstname=firstname;
         this.lastname=lastname;
         this.password=password;
         this.confirmPassword=confirmPassword;
-        this.hobbies=hobbies;
+        this.cities=cities;
       
 
 
